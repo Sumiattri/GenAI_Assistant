@@ -1,7 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 @import "tailwindcss";
 
 @theme {
   --color-light-gray: #808080;
   --color-dark-gray: #141414;
   --breakpoint-xs: 405px;
+
+  --font-poppins: "Inter", sans-serif;
 }

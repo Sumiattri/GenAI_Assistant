@@ -1,7 +1,24 @@
-import React from "react";
+import LandingPage from "./pages/Visitor/LandingPage";
+import LoginPage from "./pages/User/LoginPage";
+
+import {
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  createRoutesFromElements,
+} from "react-router-dom";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LoginPage />} />
+    </>
+  )
+);
 
 function App() {
-  return <div className=" w-screen h-screen bg-[#1B1C1D] ">App</div>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

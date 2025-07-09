@@ -1,5 +1,6 @@
 import LandingPage from "./pages/Visitor/LandingPage";
-import LoginPage from "./pages/User/LoginPage";
+import ProtectedRoute from "./Route/ProtectedRoute";
+import Home from "./pages/User/Home";
 
 import {
   createBrowserRouter,
@@ -12,7 +13,15 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
+
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
     </>
   )
 );

@@ -4,11 +4,14 @@ export const fetchAIResponse = createAsyncThunk(
   "chat/fetchAIResponse",
   async (messages, { rejectWithValue }) => {
     try {
-      const response = await fetch("api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages }),
-      });
+      const response = await fetch(
+        "https://your-vercel-url.vercel.app/api/chat",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages }),
+        }
+      );
 
       const data = await response.json();
       return data.reply; // { role: "assistant", content: "..." }

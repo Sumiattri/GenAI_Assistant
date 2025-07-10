@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { signOut } from "firebase/auth";
 import SpinnerOverlay from "../../utils/SpinnerOverlay";
+import { MdLogout } from "react-icons/md";
 
 const fallbackpng =
   "https://clone-gemini.vercel.app/assets/user_icon-BYrw3k3X.png";
@@ -12,6 +13,8 @@ function ProfileDropdown() {
   const { user } = useAuth();
 
   console.log(user);
+
+  const firstName = user?.displayName?.split(" ")[0];
 
   const [loader, setLoader] = useState();
   const handleLogout = async () => {
@@ -29,11 +32,11 @@ function ProfileDropdown() {
   return (
     <Menu as="div" className="relative inline-block text-left ">
       <div>
-        <MenuButton className="rounded-full  focus:outline-none ">
+        <MenuButton className="rounded-full  focus:outline-none cursor-pointer  ">
           <img
             src={user?.photoURL || fallbackpng}
             alt="User Avatar"
-            className="w-8 h-8 rounded-full object-cover mt-1"
+            className="w-8 h-8 rounded-full object-cover mt-1 active:outline-5"
           />
         </MenuButton>
       </div>
@@ -43,13 +46,10 @@ function ProfileDropdown() {
         className="absolute pt-3 flex flex-col items-center  right-0 z-10 mt-2 w-90 origin-top-right rounded-3xl bg-[#272A2C] shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
       >
         <div className="py-1 ">
-          <MenuItem className=" ">
-            <a
-              href="#"
-              className="block  px-4 text-xs text-gray-200   data-focus:outline-hidden"
-            >
+          <MenuItem className="">
+            <div className="flex justify-center text-[13px] text-gray-300 tracking-wide">
               {user.email}
-            </a>
+            </div>
           </MenuItem>
 
           <MenuItem className=" py-5  ">
@@ -59,22 +59,31 @@ function ProfileDropdown() {
                 alt=""
                 className="rounded-full h-20 w-20 object-cover"
               />
-              <p className="text-gray-300 text-xl font-poppins">
-                Hii {user.diaplayName}
+              <p className="text-gray-300 text-[18px] font-poppins font-light ">
+                Hii, {firstName} !
               </p>
             </div>
           </MenuItem>
 
-          <form action="#" method="POST">
-            <MenuItem>
+          <MenuItem className=" mb-5 ">
+            <div className=" mx-5 flex items-center justify-center py-2 cursor-pointer bg-[#1B1B1B] hover:bg-[#1B1B1B]/80 rounded-4xl ">
+              <MdLogout className="text-gray-300 text-2xl" />
               <button
                 onClick={handleLogout}
-                className="block w-full px-4 py-2 text-left text-sm text-white data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                className=" block  px-4 py-2 text-left text-sm text-white cursor-pointer font-light"
               >
                 Sign out
               </button>
-            </MenuItem>
-          </form>
+            </div>
+          </MenuItem>
+
+          <MenuItem>
+            <div className=" flex items-center justify-center py-2 cursor-pointer text-xs text-gray-300 gap-2 ">
+              <p>Privacy Policy</p>
+              <span>|</span>
+              <p>Terms of Service</p>
+            </div>
+          </MenuItem>
         </div>
       </MenuItems>
     </Menu>

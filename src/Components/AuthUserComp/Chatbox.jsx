@@ -40,6 +40,7 @@ function Chatbox() {
   // Scroll to bottom on new message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    console.log(messages);
   }, [messages, loading]);
 
   return (

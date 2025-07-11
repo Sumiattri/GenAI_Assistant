@@ -5,7 +5,7 @@ export const fetchAIResponse = createAsyncThunk(
   async (messages, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "https://your-vercel-url.vercel.app/api/chat",
+        "https://gen-ai-assistant.vercel.app/api/chat",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

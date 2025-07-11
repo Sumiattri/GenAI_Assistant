@@ -70,18 +70,14 @@ function Chatbox() {
       )}
       {user && messages.length > 0 && (
         <>
-          {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={`max-w-[70%] px-4 py-2 rounded-lg ${
-                msg.role === "user"
-                  ? "bg-blue-600 text-white self-end"
-                  : "bg-gray-800 text-gray-200 self-start"
-              }`}
-            >
-              {msg.content}
-            </div>
-          ))}
+          {messages.map((msg, idx) => {
+            if (!msg || !msg.role || !msg.content) return null;
+            return (
+              <div key={idx}>
+                {msg.role}: {msg.content}
+              </div>
+            );
+          })}
           {loading && (
             <div className="text-gray-400 text-sm self-start">
               GenAI is typing...

@@ -92,7 +92,7 @@ function Chatbox() {
               onInput={handleInput}
               rows="1"
               placeholder="Ask GenAI..."
-              className="text-white w-full bg-transparent resize-none overflow-hidden  focus:outline-none"
+              className="text-white max-h-20 w-full bg-transparent resize-none overflow-y-scroll  focus:outline-none"
             />
             <div className="p-2 rounded-full hover:bg-[#262729]">
               <IoMdSend

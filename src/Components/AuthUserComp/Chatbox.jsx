@@ -5,6 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage, fetchAIResponse } from "../../redux/chatSlice";
+import ChatInterface from "./ChatInterface";
 
 function Chatbox() {
   const textareaRef = useRef(null);
@@ -36,15 +37,13 @@ function Chatbox() {
       handleSend();
     }
   };
-
   // Scroll to bottom on new message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    console.log(messages);
   }, [messages, loading]);
 
   return (
-    <div className="w-full h-full flex flex-col ">
+    <div className="w-full h-full flex flex-col  overflow-y-auto hide-scrollbar">
       {!user && (
         <div className="basis-8/10  flex pt-55 justify-center ">
           <div className=" h-25 xlg:w-[45%] lg:w-[54%]   flex flex-col gap-y-0 justify-center items-center text-white font-poppins  lg:text-[36px] md:text-[33px] sm:text-3xl xsm:text-2xl text-lg font-medium tracking-wide">
@@ -69,25 +68,19 @@ function Chatbox() {
         </div>
       )}
       {user && messages.length > 0 && (
-        <>
-          {messages.map((msg, idx) => {
-            if (!msg || !msg.role || !msg.content) return null;
-            return (
-              <div key={idx}>
-                {msg.role}: {msg.content}
-              </div>
-            );
-          })}
+        <div className="basis-8/10  px-70  overflow-y-auto hide-scrollbar">
+          <ChatInterface messages={messages} messagesEndRef={messagesEndRef} />
+
           {loading && (
             <div className="text-gray-400 text-sm self-start">
               GenAI is typing...
             </div>
           )}
-        </>
+        </div>
       )}
       <div className="basis-2/10 flex items-center justify-center ">
         <div className="w-[80%]  h-20 flex items-center justify-center">
-          <div className="border border-[#4A5050] w-[70%] rounded-full py-[8px] items-center flex px-3 gap-4   ">
+          <div className="border border-[#4A5050] w-[70%] rounded-full py-[8px] items-center flex px-3 gap-4 shadow-sm shadow-amber-100  ">
             <div className="p-2 rounded-full hover:bg-[#262729]">
               <GoPlus className="text-gray-400 text-2xl cursor-pointer " />
             </div>
@@ -99,7 +92,7 @@ function Chatbox() {
               onInput={handleInput}
               rows="1"
               placeholder="Ask GenAI..."
-              className="text-white w-full bg-transparent resize-none overflow-hidden focus:outline-none"
+              className="text-white w-full bg-transparent resize-none overflow-hidden  focus:outline-none"
             />
             <div className="p-2 rounded-full hover:bg-[#262729]">
               <IoMdSend

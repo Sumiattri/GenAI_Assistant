@@ -10,3 +10,49 @@
 
   --font-poppins: "Inter", sans-serif;
 }
+@font-face {
+  font-family: font1;
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("assets/font.woff2") format("woff2");
+}
+@font-face {
+  font-family: font2;
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("assets/4UaRrENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iq2vgCIhM907w.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: font3;
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("assets/pxifyogzv91QhV44Z_GQBHsGf5PuWE5kr0SqrvI.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: font4;
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("assets/hii.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: font5;
+
+  src: url("assets/4UaXrENHsxJlGDuGo1OIlL3L2JB874GPhFI9_IqmuTCKjshW7d0w.woff2")
+    format("woff2");
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

@@ -41,7 +41,9 @@ const chatSlice = createSlice({
     },
     resetChat: (state) => {
       state.messages = [];
-      state.activeChatId = null;
+      state.loading = false;
+      state.error = null;
+      // Don't touch activeChatId here ❌
     },
   },
   extraReducers: (builder) => {

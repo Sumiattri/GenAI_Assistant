@@ -12,7 +12,7 @@ const fallbackpng =
 function ProfileDropdown() {
   const { user } = useAuth();
 
-  console.log(user);
+  // console.log(user);
 
   const firstName = user?.displayName?.split(" ")[0];
 

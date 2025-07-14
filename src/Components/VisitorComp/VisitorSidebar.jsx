@@ -15,7 +15,7 @@ function VisitorSidebar({ setExpanded, expanded }) {
       className={` bg-[#282A2C] overflow-hidden`}
     >
       <div
-        className="text-white text-xl cursor-pointer relative  h-17  "
+        className="text-white text-xl cursor-pointer relative  h-23  "
         onMouseEnter={() => {
           if (expanded) {
             setExpanded(true);

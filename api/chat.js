@@ -49,49 +49,104 @@
 //   }
 // }
 
+// export default async function handler(req, res) {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+//   if (req.method !== "POST") {
+//     return res.status(405).json({ error: "Method not allowed" });
+//   }
+
+//   const apiKey = process.env.GEMINI_API_KEY;
+
+//   const userPrompt = req.body.prompt; // 👈 Send { prompt: "Your message" } from frontend
+
+//   try {
+//     const geminiResponse = await fetch(
+//       "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//           "X-goog-api-key": apiKey,
+//         },
+//         body: JSON.stringify({
+//           contents: [
+//             {
+//               parts: [
+//                 {
+//                   text: userPrompt,
+//                 },
+//               ],
+//             },
+//           ],
+//         }),
+//       }
+//     );
+
+//     const data = await geminiResponse.json();
+//     const reply =
+//       data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
+
+//     return res.status(200).json({ reply });
+//   } catch (error) {
+//     console.error("Gemini API error:", error);
+//     return res.status(500).json({ error: "Something went wrong" });
+//   }
+// }
+
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  // Allow CORS
+  res.setHeader("Access-Control-Allow-Origin", "*"); // or specify domain
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+  // Handle preflight request
+  if (req.method === "OPTIONS") {
+    return res.status(200).end(); // 👈 This is essential
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  // Your actual POST logic goes below
+  if (req.method === "POST") {
+    const apiKey = process.env.GEMINI_API_KEY;
 
-  const userPrompt = req.body.prompt; // 👈 Send { prompt: "Your message" } from frontend
+    const userPrompt = req.body.prompt; // 👈 Send { prompt: "Your message" } from frontend
 
-  try {
-    const geminiResponse = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-goog-api-key": apiKey,
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text: userPrompt,
-                },
-              ],
-            },
-          ],
-        }),
-      }
-    );
+    try {
+      const geminiResponse = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-goog-api-key": apiKey,
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: userPrompt,
+                  },
+                ],
+              },
+            ],
+          }),
+        }
+      );
 
-    const data = await geminiResponse.json();
-    const reply =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
+      const data = await geminiResponse.json();
+      const reply =
+        data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
 
-    return res.status(200).json({ reply });
-  } catch (error) {
-    console.error("Gemini API error:", error);
-    return res.status(500).json({ error: "Something went wrong" });
+      return res.status(200).json({ reply });
+    } catch (error) {
+      console.error("Gemini API error:", error);
+      return res.status(500).json({ error: "Something went wrong" });
+    }
   }
+
+  // If method not allowed
+  return res.status(405).end();
 }

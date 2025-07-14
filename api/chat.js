@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY3}`,
           "Content-Type": "application/json",
-          "HTTP-Referer": "https://genai-assistant.vercel.app", // or your deployed domain
+          "HTTP-Referer": "https://gen-ai-assistant.vercel.app", // or your deployed domain
           "X-Title": "GenAI Assistant",
         },
         body: JSON.stringify({

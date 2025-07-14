@@ -2,6 +2,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm"; // For GitHub Flavored Markdown (tables, strikethrough, task lists)
 import rehypeHighlight from "rehype-highlight";
 import SvgComponent from "../../utils/SvgComponent";
+import { BiLike } from "react-icons/bi";
+import { BiDislike } from "react-icons/bi";
 
 const ChatInterface = ({ messages, messagesEndRef }) => {
   // console.log(messages);
@@ -20,67 +22,70 @@ const ChatInterface = ({ messages, messagesEndRef }) => {
         >
           {msg.role === "assistant" ? (
             // Wrapper for Markdown content with prose styles
-            <div className="border flex gap-5 ">
-              <div className="border">
-                <SvgComponent />
-              </div>
-              <div className="prose prose-invert max-w-none font-[font2] text-[15px] font-extralight">
-                <ReactMarkdown
-                  children={msg.content}
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeHighlight]} // Apply rehypeHighlight for code block processing
-                  components={{
-                    // Custom components (you can keep these or simplify further if needed)
-                    h1: ({ node, ...props }) => (
-                      <h1 className="text-3xl font-bold mt-6 mb-4" {...props} />
-                    ),
-                    h2: ({ node, ...props }) => (
-                      <h2
-                        className="text-2xl font-semibold mt-4 mb-2"
-                        {...props}
-                      />
-                    ),
-                    h3: ({ node, ...props }) => (
-                      <h3
-                        className="text-xl font-medium mt-3 mb-1"
-                        {...props}
-                      />
-                    ),
-                    p: ({ node, ...props }) => (
-                      <p
-                        className="my-2 text-base leading-relaxed"
-                        {...props}
-                      />
-                    ),
-                    ol: ({ node, ...props }) => (
-                      // Keep list components simple to let prose handle most styling
-                      <ol className="list-decimal list-outside" {...props} />
-                    ),
-                    ul: ({ node, ...props }) => (
-                      <ul className="list-disc list-outside" {...props} />
-                    ),
-                    li: ({ node, ...props }) => (
-                      // If still issues, you can try `display: flex` and `align-items: baseline` here,
-                      // but ideally `prose` handles this when width is sufficient.
-                      <li {...props} />
-                    ),
-                    code: ({ inline, className, children, ...props }) =>
-                      inline ? (
-                        <code
-                          className=" text-white px-1 py-0.5 rounded-3xl"
+            <div className="flex flex-col">
+              <div className=" flex gap-2 ">
+                <div className=" min-w-10">
+                  <SvgComponent />
+                </div>
+                <div className="prose prose-invert max-w-none font-[font2] text-[15px] font-extralight">
+                  <ReactMarkdown
+                    children={msg.content}
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeHighlight]} // Apply rehypeHighlight for code block processing
+                    components={{
+                      // Custom components (you can keep these or simplify further if needed)
+                      h1: ({ node, ...props }) => (
+                        <h1
+                          className="text-3xl font-bold mt-6 mb-4"
                           {...props}
-                        >
-                          {children}
-                        </code>
-                      ) : (
-                        <pre className="bg-[#282A2C] p-4 rounded overflow-x-auto my-2">
-                          <code className={className} {...props}>
+                        />
+                      ),
+                      h2: ({ node, ...props }) => (
+                        <h2
+                          className="text-2xl font-semibold mt-4 mb-2"
+                          {...props}
+                        />
+                      ),
+                      h3: ({ node, ...props }) => (
+                        <h3
+                          className="text-xl font-medium mt-3 mb-1"
+                          {...props}
+                        />
+                      ),
+                      p: ({ node, ...props }) => (
+                        <p
+                          className="my-2 text-base leading-relaxed"
+                          {...props}
+                        />
+                      ),
+                      ol: ({ node, ...props }) => (
+                        <ol className="list-decimal list-outside" {...props} />
+                      ),
+                      ul: ({ node, ...props }) => (
+                        <ul className="list-disc list-outside" {...props} />
+                      ),
+                      li: ({ node, ...props }) => <li {...props} />,
+                      code: ({ inline, className, children, ...props }) =>
+                        inline ? (
+                          <code
+                            className=" text-white px-1 py-0.5 rounded-3xl"
+                            {...props}
+                          >
                             {children}
                           </code>
-                        </pre>
-                      ),
-                  }}
-                />
+                        ) : (
+                          <pre className="bg-[#282A2C] p-4 rounded overflow-x-auto my-2">
+                            <code className={className} {...props}>
+                              {children}
+                            </code>
+                          </pre>
+                        ),
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="flex gap-2 px-10">
+                <BiLike /> <BiDislike />{" "}
               </div>
             </div>
           ) : (

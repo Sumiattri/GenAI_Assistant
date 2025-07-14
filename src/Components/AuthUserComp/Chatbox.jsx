@@ -58,7 +58,7 @@ function Chatbox() {
     if (!userId) return;
 
     const userMessage = { role: "user", content: input };
-    const recentMessages = messages.slice(-2);
+    const recentMessages = messages.slice(-1);
 
     // 🛑 Guard: If there's no chat ID yet, create one
     let chatId = activeChatId;
@@ -129,7 +129,7 @@ function Chatbox() {
         </div>
       )}
       {user && messages.length > 0 && (
-        <div className="basis-8/10  px-70  overflow-y-auto hide-scrollbar">
+        <div className="basis-8/10  px-50  overflow-y-auto hide-scrollbar">
           <ChatInterface messages={messages} messagesEndRef={messagesEndRef} />
 
           {loading && (

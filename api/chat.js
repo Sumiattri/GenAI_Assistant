@@ -111,7 +111,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const apiKey = process.env.GEMINI_API_KEY;
 
-    const userPrompt = req.body.prompt; // 👈 Send { prompt: "Your message" } from frontend
+    const userPrompt = `Respond briefly and concisely: ${req.body.prompt}`;
 
     try {
       const geminiResponse = await fetch(

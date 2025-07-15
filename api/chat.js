@@ -133,7 +133,7 @@ export default async function handler(req, res) {
               },
             ],
             generationConfig: {
-              maxOutputTokens: 200, // 👈 try 300–500 depending on your UI
+              maxOutputTokens: 300, // 👈 try 300–500 depending on your UI
               temperature: 0.7,
               topK: 40,
               topP: 0.95,

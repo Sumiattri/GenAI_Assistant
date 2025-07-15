@@ -9,7 +9,10 @@ export const fetchAIResponse = createAsyncThunk(
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages }),
+          // body: JSON.stringify({ messages }),
+          body: JSON.stringify({
+            prompt: messages[messages.length - 1].content,
+          }),
         }
       );
 
@@ -53,7 +56,8 @@ const chatSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchAIResponse.fulfilled, (state, action) => {
-        state.messages.push(action.payload); // { role: "assistant", content: "..." }
+        const reply = { role: "assistant", content: action.payload };
+        state.messages.push(reply); // { role: "assistant", content: "..." }
         state.loading = false;
       })
       .addCase(fetchAIResponse.rejected, (state, action) => {

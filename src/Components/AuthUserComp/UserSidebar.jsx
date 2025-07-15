@@ -23,7 +23,7 @@ function UserSidebar() {
 
       const chats = await getUserChats(userId);
       setChatList(chats);
-      console.log(chats);
+      // console.log(chats);
     };
 
     fetchChats();

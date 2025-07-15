@@ -132,18 +132,28 @@ export default async function handler(req, res) {
                 ],
               },
             ],
+            generationConfig: {
+              maxOutputTokens: 100, // 👈 try 300–500 depending on your UI
+              temperature: 0.7,
+              topK: 40,
+              topP: 0.95,
+            },
           }),
         }
       );
 
       const data = await geminiResponse.json();
+
+      console.log("Gemini full response:", JSON.stringify(data, null, 2));
       const reply =
         data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
 
       return res.status(200).json({ reply });
     } catch (error) {
       console.error("Gemini API error:", error);
-      return res.status(500).json({ error: "Something went wrong" });
+      return res
+        .status(500)
+        .json({ error: "Something went wrong", details: error.message });
     }
   }
 

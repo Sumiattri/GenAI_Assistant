@@ -22,7 +22,6 @@ function Chatbox() {
   const { messages, loading, activeChatId } = useSelector(
     (state) => state.chat
   );
-  console.log(activeChatId);
 
   const messagesEndRef = useRef(null);
 
@@ -46,12 +45,6 @@ function Chatbox() {
     fetchChatMessages();
   }, []);
 
-  const handleInput = () => {
-    const textarea = textareaRef.current;
-    textarea.style.height = "auto"; // reset height
-    textarea.style.height = textarea.scrollHeight + "px"; // adjust to content
-  };
-
   const handleSend = async () => {
     if (!input.trim()) return;
     const userId = auth.currentUser?.uid;
@@ -74,22 +67,14 @@ function Chatbox() {
     const response = await dispatch(
       fetchAIResponse([...recentMessages, userMessage])
     );
-    const assistantMessage = response.payload; // ✅ safely get it from thunk return
+    const reply = response.payload;
+    const assistantMessage = {
+      role: "assistant",
+      content: reply,
+    };
     await saveMessageToFirestore(userId, chatId, assistantMessage); // ✅ assistant message
     setInput("");
   };
-
-  // useEffect(() => {
-  //   if (messages.length === 0) return;
-
-  //   const lastMessage = messages[messages.length - 1];
-  //   if (lastMessage.role !== "assistant") return;
-
-  //   const userId = auth.currentUser?.uid;
-  //   if (!userId || !activeChatId) return;
-
-  //   saveMessageToFirestore(userId, activeChatId, lastMessage);
-  // }, [messages]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -98,7 +83,13 @@ function Chatbox() {
       setInput("");
     }
   };
-  // Scroll to bottom on new message
+
+  const handleInput = () => {
+    const textarea = textareaRef.current;
+    textarea.style.height = "auto"; // reset height
+    textarea.style.height = textarea.scrollHeight + "px"; // adjust to content
+  };
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);

@@ -6,7 +6,7 @@ import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
 
 const ChatInterface = ({ messages, messagesEndRef }) => {
-  // console.log(messages);
+  console.log(messages);
   return (
     <div className=" flex flex-col ">
       {messages?.map((msg, i) => (

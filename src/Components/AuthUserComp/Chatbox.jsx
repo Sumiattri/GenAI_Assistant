@@ -13,7 +13,7 @@ import { setMessages } from "../../redux/chatSlice";
 import { createNewChat } from "../../firebase/fireStoreUtils";
 import { MdAutoAwesome } from "react-icons/md";
 
-function Chatbox() {
+function Chatbox({ expanded }) {
   const textareaRef = useRef(null);
   const { user } = useAuth();
   const firstName = user?.displayName?.split(" ")[0];
@@ -56,7 +56,7 @@ function Chatbox() {
     // 🛑 Guard: If there's no chat ID yet, create one
     let chatId = activeChatId;
     if (!chatId) {
-      chatId = await createNewChat(userId, userMessage.content); // use title from first message
+      chatId = await createNewChat(userId, input); // use title from first message
       dispatch(setChatId(chatId));
       localStorage.setItem("activeChatId", chatId); // persist it
     }
@@ -120,12 +120,12 @@ function Chatbox() {
         </div>
       )}
       {user && messages.length > 0 && (
-        <div className="basis-8/10  px-50  overflow-y-auto hide-scrollbar">
+        <div className={`basis-8/10   overflow-x-hidden  overflow-y-auto `}>
           <ChatInterface messages={messages} messagesEndRef={messagesEndRef} />
 
           {loading && (
             <div className="text-gray-400 text-sm self-start ">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 lg:w-[50vw] md:w-[67vw] sm:w-[85vw] w-[95vw] mx-auto ">
                 {" "}
                 <MdAutoAwesome className="text-blue-400" /> GenAI is thinking...
               </div>
@@ -133,12 +133,13 @@ function Chatbox() {
           )}
         </div>
       )}
-      <div className="basis-2/10 flex items-center justify-center ">
-        <div className="w-[80%]  h-20 flex items-center justify-center">
-          <div className="border border-[#4A5050] w-[70%] rounded-full py-[8px] items-center flex px-3 gap-4 shadow-sm shadow-amber-100  ">
+      <div className="basis-2/10  flex items-center justify-center ">
+        <div className=" relative  flex  items-center flex-col justify-end ">
+          <div className="border    lg:w-[50vw] md:w-[67vw] sm:w-[85vw] w-[95vw] border-[#4A5050]   rounded-full py-[8px] items-center flex px-3 gap-4 shadow-sm shadow-amber-100  ">
             <div className="p-2 rounded-full hover:bg-[#262729]">
               <GoPlus className="text-gray-400 text-2xl cursor-pointer " />
             </div>
+
             <textarea
               value={input}
               onKeyDown={handleKeyDown}
@@ -147,8 +148,11 @@ function Chatbox() {
               onInput={handleInput}
               rows="1"
               placeholder="Ask GenAI..."
-              className="text-white max-h-20 w-full bg-transparent resize-none overflow-y-scroll  focus:outline-none"
+              className={`text-white  max-h-20 w-full bg-transparent resize-none overflow-y-scroll  focus:outline-none ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             />
+
             <div className="p-2 rounded-full hover:bg-[#262729]">
               <IoMdSend
                 onClick={handleSend}

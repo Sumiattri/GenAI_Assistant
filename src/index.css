@@ -20,7 +20,7 @@
 }
 @font-face {
   font-family: font2;
-  font-style: extrali;
+  font-style: extralght;
   font-weight: 200 700;
   font-display: swap;
   src: url("assets/4UaRrENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iq2vgCIhM907w.woff2")
@@ -57,4 +57,16 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
 @plugin "@tailwindcss/typography";
+.hljs {
+  background: transparent !important;
+  color: white;
+}
+
+.prose pre {
+  background-color: #282a2c;
+  overflow-x: auto;
+
+  box-shadow: none !important;
+}

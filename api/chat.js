@@ -111,7 +111,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const apiKey = process.env.GEMINI_API_KEY;
 
-    const userPrompt = `Give a short and beginner-friendly answer to: ${req.body.prompt}`;
+    const userPrompt = `Answer the following question in a clear,practical, beginner-friendly way.Greet back properly to hii, hello or thanking. Keep it concise but complete. Don't oversimplify or skip important details.\n\nQuestion: ${req.body.prompt}`;
     try {
       const geminiResponse = await fetch(
         "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
@@ -132,7 +132,7 @@ export default async function handler(req, res) {
               },
             ],
             generationConfig: {
-              maxOutputTokens: 500, // 👈 try 300–500 depending on your UI
+              maxOutputTokens: 400, // 👈 try 300–500 depending on your UI
               temperature: 0.7,
               topK: 40,
               topP: 0.95,

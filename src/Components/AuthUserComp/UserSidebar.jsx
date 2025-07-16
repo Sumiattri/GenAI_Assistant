@@ -9,9 +9,9 @@ import { useState, useEffect } from "react";
 import { getUserChats } from "../../firebase/fireStoreUtils";
 import { getMessagesFromFirestore } from "../../firebase/fireStoreUtils";
 
-function UserSidebar() {
+function UserSidebar({ expanded, setExpanded }) {
   const dispatch = useDispatch();
-  const [expanded, setExpanded] = useState(false);
+
   const [iconClicked, setIconClicked] = useState(false);
   const [chatList, setChatList] = useState([]);
   const { activeChatId, messages } = useSelector((state) => state.chat);
@@ -48,8 +48,8 @@ function UserSidebar() {
   return (
     <motion.div
       initial={false}
-      animate={{ width: expanded ? "22vw" : "5vw" }}
-      className={` bg-[#282A2C] overflow-hidden`}
+      animate={{ width: expanded ? "22vw" : "7vw" }}
+      className={` bg-[#282A2C] overflow-hidden lg:inline-block hidden`}
     >
       <div
         className="text-white text-xl cursor-pointer relative  h-23  "

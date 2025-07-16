@@ -20,9 +20,9 @@ function VisMobileSidebar({ setExpanded, expanded }) {
         animate={{ x: 0, opacity: 100 }}
         exit={{ x: "-100%" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={` bg-[#282A2C] overflow-hidden z-11  absolute inset-0  md:w-[40vh] sm:w-[50vw] w-[80vw] h-[100vh]`}
+        className={` bg-[#282A2C] overflow-hidden z-11  absolute inset-0  md:w-[40vh] sm:w-[50vw] w-[80vw] h-[100dvh]`}
       >
-        <div className="  w-full  h-[calc(100vh-68px)]  relative ">
+        <div className="  w-full h-full  relative ">
           <div
             className={`absolute top-17 left-10   ${
               !expanded ? "opacity-0" : "opacity-100"

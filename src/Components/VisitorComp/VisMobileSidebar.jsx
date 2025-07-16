@@ -5,7 +5,7 @@ function VisMobileSidebar({ setExpanded, expanded }) {
   const handleGoogleLogin = useGoogleLogin();
 
   return (
-    <div className="absolute inset-0 lg:hidden">
+    <div className="absolute inset-0 lg:hidden ">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 100 }}

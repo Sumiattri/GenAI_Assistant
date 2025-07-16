@@ -25,7 +25,7 @@ function LandingPage() {
 
   return (
     <>
-      <div className="flex flex-row min-h-[100dvh]  w-screen bg-[#1b1c1d] ">
+      <div className="flex flex-row h-[100dvh] overflow-y-auto w-screen bg-[#1b1c1d] ">
         <VisitorSidebar setExpanded={setExpanded} expanded={expanded} />
 
         <div className="  w-full h-full flex flex-col ">

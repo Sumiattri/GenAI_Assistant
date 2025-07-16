@@ -46,7 +46,7 @@ function VisitorChatbox() {
   }, [messages, loading]);
 
   return (
-    <div className="w-full border h-[calc(100vh-80px)] flex flex-col  overflow-y-auto hide-scrollbar">
+    <div className="w-full  h-full flex flex-col  overflow-y-auto hide-scrollbar">
       {!guest && (
         <div className="basis-8/10  flex pt-55 justify-center ">
           <div className=" h-25 xlg:w-[45%] lg:w-[54%]   flex flex-col gap-y-0 justify-center items-center text-white font-poppins  lg:text-[36px] md:text-[33px] sm:text-3xl xsm:text-2xl text-lg font-medium tracking-wide">

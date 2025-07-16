@@ -11,8 +11,8 @@ function VisitorSidebar({ setExpanded, expanded }) {
   return (
     <motion.div
       initial={false}
-      animate={{ width: expanded ? "22vw" : "5vw" }}
-      className={` bg-[#282A2C] overflow-hidden`}
+      animate={{ width: expanded ? "22vw" : "7vw" }}
+      className={` bg-[#282A2C] overflow-hidden lg:inline-block hidden`}
     >
       <div
         className="text-white text-xl cursor-pointer relative  h-23  "

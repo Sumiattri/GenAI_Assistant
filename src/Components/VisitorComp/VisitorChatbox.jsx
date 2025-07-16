@@ -63,7 +63,7 @@ function VisitorChatbox() {
       )}
 
       {messages.length > 0 && (
-        <div className={`basis-8/10   overflow-x-hidden  overflow-y-auto `}>
+        <div className={` basis-8/10   overflow-x-hidden  overflow-y-auto `}>
           <ChatInterface messages={messages} messagesEndRef={messagesEndRef} />
 
           {loading && (
@@ -76,7 +76,7 @@ function VisitorChatbox() {
           )}
         </div>
       )}
-      <div className="basis-2/10  flex items-center justify-center ">
+      <div className="basis-2/10  flex items-center justify-center sm:-mt-8 -mt-10 ">
         <div className=" relative  flex  items-center flex-col justify-end ">
           <div className="border    lg:w-[50vw] md:w-[67vw] sm:w-[85vw] w-[95vw] border-[#4A5050]   rounded-full py-[8px] items-center flex px-3 gap-4 shadow-sm shadow-amber-100  ">
             <div className="p-2 rounded-full hover:bg-[#262729]">

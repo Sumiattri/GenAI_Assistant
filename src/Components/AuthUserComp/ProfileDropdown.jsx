@@ -1,23 +1,26 @@
 import { useAuth } from "../../context/AuthContext";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { signOut } from "firebase/auth";
 import SpinnerOverlay from "../../utils/SpinnerOverlay";
 import { MdLogout } from "react-icons/md";
+import { resetChat, setChatId } from "../../redux/chatSlice";
+import { useDispatch } from "react-redux";
 
 const fallbackpng =
   "https://clone-gemini.vercel.app/assets/user_icon-BYrw3k3X.png";
 
 function ProfileDropdown() {
   const { user } = useAuth();
-
-  // console.log(user);
-
   const firstName = user?.displayName?.split(" ")[0];
+  const dispatch = useDispatch();
 
   const [loader, setLoader] = useState();
   const handleLogout = async () => {
+    dispatch(resetChat());
+    dispatch(setChatId(null));
+    localStorage.removeItem("activeChatId");
     setLoader(true);
     setTimeout(async () => {
       await signOut(auth);

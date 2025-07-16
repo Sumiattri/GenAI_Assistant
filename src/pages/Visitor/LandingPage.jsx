@@ -37,7 +37,7 @@ function LandingPage() {
       <AnimatePresence>
         {expanded && (
           <VisMobileSidebar
-            className="max-h-[100dvh] overflow-y-hidden"
+            // className="max-h-[100dvh] overflow-y-hidden"
             setExpanded={setExpanded}
             expanded={expanded}
           />

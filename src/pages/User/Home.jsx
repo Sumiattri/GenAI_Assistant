@@ -9,7 +9,7 @@ function LandingPage() {
   const [expanded, setExpanded] = useState(false);
   return (
     <>
-      <div className="flex flex-row h-screen w-screen bg-[#1b1c1d] ">
+      <div className="flex flex-row h-[100dvh] w-screen bg-[#1b1c1d] ">
         <UserSidebar expanded={expanded} setExpanded={setExpanded} />
 
         <div className="  w-full h-full flex flex-col ">

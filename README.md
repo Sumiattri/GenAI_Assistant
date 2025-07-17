@@ -1,7 +1,5 @@
 # GenAI Assistant 🤖
 
-# GenAI Assistant 🤖
-
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react)
 ![Tailwind](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase)
@@ -41,13 +39,13 @@ A sleek and modern Google Gemini-inspired AI chatbot built using **React**, **Ta
 
 (![Desktop Screenshot](<Screenshot 2025-07-17 at 12.18.25.png>))
 
-### Mobile Sidebar
+### Mobile UI
 
-(!![Mobile Sidebar](image.png))
-
-### Mobile View
-
-(![Mobile View](image-1.png))
+<div align="center">
+  <img src="image.png" alt="Mobile Sidebar" width="250" />
+  &nbsp;
+  <img src="image-1.png" alt="Mobile View" width="250" />
+</div>
 
 ## 📂 Folder Structure
 
@@ -92,6 +90,12 @@ src/
 ├── index.js
 ├── main.jsx
 ├── index.css
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+└── README.md
 
 ```
 ## 🔧 Installation
@@ -107,18 +111,17 @@ npm run dev
 
 ---
 
-## 📩 Contact
+## Contact
 
-Built with passion by [**@sumitattri**](https://github.com/sumitattri)
-
-- 📧 Email: [sumitattri165@gmail.com](mailto:sumitattri165@gmail.com)
-- 🔗 LinkedIn: [Sumit Attri](https://www.linkedin.com/in/sumit-attri-3147b9257)
+Created by [@sumitattri](https://github.com/Sumiattri)  
+📧 Email: sumitattri165@gmail.com  
+🔗 LinkedIn: (https://www.linkedin.com/in/sumit-attri-3147b9257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 
 ---
 
 ## 🚀 Try It Live
 
-[https://genai-clone.vercel.app\](https://genai-clone.vercel.app)](https://gen-ai-assistant.vercel.app/)
+(gen-ai-assistant.vercel.app)
 
 ---
 

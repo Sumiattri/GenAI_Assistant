@@ -18,25 +18,6 @@ export const saveMessageToFirestore = async (userId, chatId, message) => {
   });
 };
 
-// export const createNewChat = async (userId, messages) => {
-//   try {
-//     const chatRef = collection(db, "users", userId, "chats");
-//     const fullText = messages[0]?.content || "";
-//     const trimmedText = fullText.split(" ").slice(0, 30).join(" ") + "...";
-
-//     const newChat = await addDoc(chatRef, {
-//       // title: messages[0].content,
-//       title: "New Chat",
-//       createdAt: serverTimestamp(),
-//     });
-
-//     return newChat.id; // 🔁 send chatId back to UI
-//   } catch (error) {
-//     console.error("Failed to create chat:", error);
-//     throw error;
-//   }
-// };
-
 export const createNewChat = async (userId, firstMessageContent = "") => {
   try {
     const chatRef = collection(db, "users", userId, "chats");

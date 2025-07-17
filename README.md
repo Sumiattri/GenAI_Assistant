@@ -37,7 +37,7 @@ A sleek and modern Google Gemini-inspired AI chatbot built using **React**, **Ta
 
 ### Desktop UI
 
-(![Desktop Screenshot](<Screenshot 2025-07-17 at 12.18.25.png>))
+![Desktop Screenshot](<Screenshot 2025-07-17 at 12.18.25.png>)
 
 ### Mobile UI
 
@@ -49,7 +49,7 @@ A sleek and modern Google Gemini-inspired AI chatbot built using **React**, **Ta
 
 ## 📂 Folder Structure
 
-````bash
+```
 src/
 ├── assets/                     # Fonts, logos, images
 ├── auth/
@@ -98,6 +98,7 @@ src/
 └── README.md
 
 ```
+
 ## 🔧 Installation
 
 ```bash
@@ -105,7 +106,7 @@ git clone [https://github.com/sumitattri/gen-ai-clone.git](https://github.com/Su
 cd genai-clone
 npm install
 npm run dev
-````
+```
 
 > 🚨 Don't forget to add your Gemini API key and Firebase config in the `.env.local` file.
 

@@ -8,13 +8,11 @@ import { MdLogout } from "react-icons/md";
 import { resetChat, setChatId } from "../../redux/chatSlice";
 import { useDispatch } from "react-redux";
 
-const fallbackpng =
-  "https://clone-gemini.vercel.app/assets/user_icon-BYrw3k3X.png";
-
 function ProfileDropdown() {
   const { user } = useAuth();
   const firstName = user?.displayName?.split(" ")[0];
   const dispatch = useDispatch();
+  const fallbackpng = "/image.png";
 
   const [loader, setLoader] = useState();
   const handleLogout = async () => {
